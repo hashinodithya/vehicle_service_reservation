@@ -1,0 +1,92 @@
+@charset "ISO-8859-1";
+body {
+    background-color: #f8f8f8; /* Use the same background color as other pages */
+    font-family: "Poppins", sans-serif; /* Use the same font family */
+    margin: 0; /* Reset margin to match other pages */
+}
+
+.page-content {
+    padding: 50px 0; /* Add padding to match other pages */
+}
+
+.card {
+    border: none;
+    margin-bottom: 30px;
+    border-radius: 20px; /* Use the same border-radius as other pages */
+    box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05); /* Use the same box-shadow as other pages */
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.user-profile {
+    background: #f29263; /* Use the same background color as other pages */
+    color: #fff; /* Use white text color */
+    text-align: center;
+}
+
+.user-card-full .user-profile {
+    border-radius: 20px 0 0 20px; /* Use the same border-radius as other pages */
+}
+
+.user-card-full .user-profile img {
+    border-radius: 50%; /* Make the user profile image circular */
+}
+
+.user-card-full h6 {
+    font-size: 36px; /* Use a larger font size */
+    margin-top: 20px; /* Add margin-top to match other pages */
+}
+
+.user-card-full .card-block p {
+    line-height: 1.8; /* Adjust line-height for better readability */
+}
+
+.user-card-full .card-block .f-w-600 {
+    font-weight: bold; /* Use a bold font weight for headers */
+}
+
+.text-muted {
+    color: #777; /* Use a muted text color */
+}
+
+/* Add a consistent border-bottom to headings */
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Style the edit icon */
+.feather.icon-edit {
+    font-size: 20px;
+    color: #fff; /* Use white color for the icon */
+    margin-top: 10px; /* Adjust margin-top as needed */
+    cursor: pointer;
+}
+
+/* Style social links (if present) */
+.user-card-full .social-link li {
+    display: inline-block;
+}
+
+.user-card-full .social-link li a {
+    font-size: 20px;
+    margin-right: 10px; /* Adjust margin as needed */
+    color: #777; /* Use a consistent color for social links */
+}
+
+/* Style buttons (if present) */
+.btn-profile {
+    background: #6dabe4; /* Use the same button background color as other pages */
+    color: #fff; /* Use white text color */
+    border: none;
+    border-radius: 5px; /* Use the same border-radius as other pages */
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-weight: bold; /* Use bold text for buttons */
+    cursor: pointer;
+    transition: background 0.3s ease-in-out; /* Add a smooth hover effect */
+}
+
+.btn-profile:hover {
+    background: #4292dc; /* Change background color on hover */
+}
