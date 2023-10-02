@@ -37,7 +37,7 @@ public class reservationDetailsServlet extends HttpServlet {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3307/isec_assessment2?useSSL=false", "root", "1234");
             
             // Modify the SQL query to retrieve reservations for the given username
-            String sql = "SELECT c_date, c_time, location, vehicle_no, mileage, message FROM vehicle_service WHERE username=?";
+            String sql = "SELECT booking_id, c_date, c_time, location, vehicle_no, mileage, message FROM vehicle_service WHERE username=?";
             pst = con.prepareStatement(sql);
             pst.setString(1, username);
             
@@ -48,6 +48,7 @@ public class reservationDetailsServlet extends HttpServlet {
             
             while (resultSet.next()) {
                 Map<String, String> reservation = new HashMap<>();
+                reservation.put("booking_id", resultSet.getString("booking_id"));
                 reservation.put("c_date", resultSet.getString("c_date"));
                 reservation.put("c_time", resultSet.getString("c_time"));
                 reservation.put("location", resultSet.getString("location"));

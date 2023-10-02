@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<jsp:include page="navbar.jsp" />
 	<h2>Reservation Table</h2>
     <div class="table-wrapper">
         <table class="fl-table">
@@ -39,8 +40,11 @@
                                 <td><%= reservation.get("vehicle_no") %></td>
                                 <td><%= reservation.get("mileage") %></td>
                                 <td><%= reservation.get("message") %></td>
-                                <td><button>Cancel</button></td>
-                            </tr>
+                                <td><Button form="cancel-form-<%= reservation.get("booking_id") %>" type="submit">Cancel</Button></td>
+							</tr>
+							<form id="cancel-form-<%= reservation.get("booking_id") %>" action="cancelReservation" method="post">
+   								 <input type="hidden" name="booking_id" value="<%= reservation.get("booking_id") %>"/>
+							</form>
                 <%
                         }
                     }

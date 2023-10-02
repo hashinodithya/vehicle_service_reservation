@@ -50,7 +50,7 @@
   		
   		<form  action="viewReservation" method="post" >
       		<div>
-      		<input type="hidden" name="username" value=<%=username%>/>
+      		<input type="email" name="username" value="<%=username%>"/>
          		 <input class="form-submit" type="submit" value="View Reservation" />
       		</div>
       
