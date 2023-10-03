@@ -72,9 +72,9 @@
 							<div class="form-group">
 							
 								<select id="time" name="time"  class="">
-                            <option value="10">10 AM</option>
-                            <option value="11">11 AM</option>
-                            <option value="12">12 PM</option>
+                            <option value="10:00:00">10 AM</option>
+                            <option value="11:00:00">11 AM</option>
+                            <option value="12:00:00">12 PM</option>
                             
                         </select>
 							</div>

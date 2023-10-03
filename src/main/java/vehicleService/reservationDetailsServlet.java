@@ -26,31 +26,36 @@ public class reservationDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username"); // Change "user_name" to the actual parameter name
+		String username = request.getParameter("username"); 
         
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet resultSet = null;
         
+        String dbUrl = databaseConfig.getDbUrl();
+        String dbUsername = databaseConfig.getDbUsername();
+        String dbPassword = databaseConfig.getDbPassword();
+
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/isec_assessment2?useSSL=false", "root", "1234");
+            con = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
             
-            // Modify the SQL query to retrieve reservations for the given username
-            String sql = "SELECT booking_id, c_date, c_time, location, vehicle_no, mileage, message FROM vehicle_service WHERE username=?";
+            
+            String sql = "SELECT booking_id, date, time, location, vehicle_no, mileage, message FROM vehicle_service WHERE username=?";
             pst = con.prepareStatement(sql);
             pst.setString(1, username);
             
             resultSet = pst.executeQuery();
             
-            // Store the result set in a list to pass it to the JSP
+            
             List<Map<String, String>> reservationList = new ArrayList<>();
             
             while (resultSet.next()) {
                 Map<String, String> reservation = new HashMap<>();
                 reservation.put("booking_id", resultSet.getString("booking_id"));
-                reservation.put("c_date", resultSet.getString("c_date"));
-                reservation.put("c_time", resultSet.getString("c_time"));
+                reservation.put("date", resultSet.getString("date"));
+                reservation.put("time", resultSet.getString("time"));
                 reservation.put("location", resultSet.getString("location"));
                 reservation.put("vehicle_no", resultSet.getString("vehicle_no"));
                 reservation.put("mileage", resultSet.getString("mileage"));

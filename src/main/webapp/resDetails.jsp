@@ -34,8 +34,8 @@
                 %>
                
                             <tr>
-                                <td><%= reservation.get("c_date") %></td>
-                                <td><%= reservation.get("c_time") %></td>
+                                <td><%= reservation.get("date") %></td>
+                                <td><%= reservation.get("time") %></td>
                                 <td><%= reservation.get("location") %></td>
                                 <td><%= reservation.get("vehicle_no") %></td>
                                 <td><%= reservation.get("mileage") %></td>

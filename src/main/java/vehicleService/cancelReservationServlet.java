@@ -30,11 +30,13 @@ public class cancelReservationServlet extends HttpServlet {
 		
 		 Connection con = null;
 	        PreparedStatement pst = null;
-	        
+	        String dbUrl = databaseConfig.getDbUrl();
+	        String dbUsername = databaseConfig.getDbUsername();
+	        String dbPassword = databaseConfig.getDbPassword();
 	        
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
-	            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/isec_assessment2?useSSL=false", "root", "1234");
+	            con = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
 
 	            String sql = "DELETE FROM vehicle_service WHERE booking_id=?";
 	            pst = con.prepareStatement(sql);
@@ -57,7 +59,7 @@ public class cancelReservationServlet extends HttpServlet {
 	            request.setAttribute("cancellationMessage", "An error occurred while canceling the reservation.");
 	        }
 
-	        response.sendRedirect("resDetails.jsp");
+	        response.sendRedirect("index.jsp");
 	}
 
 }

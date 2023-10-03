@@ -22,8 +22,8 @@ public class reservationServlet extends HttpServlet {
        
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String c_date = request.getParameter("date");
-		String c_time = request.getParameter("time");
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
 		String location = request.getParameter("location");
 		String vehicle_no = request.getParameter("vehicle_no");
 		String mileage = request.getParameter("mileage");	
@@ -32,6 +32,10 @@ public class reservationServlet extends HttpServlet {
 
 		RequestDispatcher dispatcher = null;
 		Connection con = null;
+		
+		String dbUrl = databaseConfig.getDbUrl();
+        String dbUsername = databaseConfig.getDbUsername();
+        String dbPassword = databaseConfig.getDbPassword();
 		
 //		if(uname==null || uname.equals("")) {
 //			request.setAttribute("status", "invalidName");
@@ -65,10 +69,10 @@ public class reservationServlet extends HttpServlet {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/isec_assessment2?useSSL=false","root","1234");
-			PreparedStatement pst = con.prepareStatement("insert into vehicle_service(c_date,c_time,location,vehicle_no,mileage,message,username) values(?,?,?,?,?,?,?) ");
-			pst.setString(1, c_date);
-			pst.setString(2, c_time);
+			con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
+			PreparedStatement pst = con.prepareStatement("insert into vehicle_service(date,time,location,vehicle_no,mileage,message,username) values(?,?,?,?,?,?,?) ");
+			pst.setString(1, date);
+			pst.setString(2, time);
 			pst.setString(3, location);
 			pst.setString(4, vehicle_no);
 			pst.setString(5, mileage);

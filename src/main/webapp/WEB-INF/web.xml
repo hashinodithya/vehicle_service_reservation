@@ -33,6 +33,7 @@
         <param-name>certificate-file</param-name>
         <param-value>wso2carbon.jks</param-value>
     </context-param>
+
     
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

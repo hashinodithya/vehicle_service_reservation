@@ -2,3 +2,14 @@
 "src/main/java/wso2carbon.jks" 
 "target/classes/sample-app.properties" 
 "target/classes/wso2carbon.jks" 
+
+src/main/java/sample-app.properties
+src/main/java/wso2carbon.jks 
+target/classes/sample-app.properties 
+target/classes/wso2carbon.jks 
+wso2carbon.jks
+sample-app.properties
+databaseConfig.java
+sample-app.properties
+target/classes/vehicleService/databaseConfig.java
+
