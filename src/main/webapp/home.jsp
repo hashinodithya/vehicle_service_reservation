@@ -55,7 +55,7 @@
 			<div class="container">
 				<div class="signup-content">
 					<div class="signup-form">
-						<h2 class="form-title">Reserve a Vehicle</h2>
+						<h2 class="form-title">Reserve a Time</h2>
 					
 						<form method="post" action="reservation" class="register-form"
 							id="register-form">
@@ -67,7 +67,7 @@
 							
 							<div class="form-group">
 								<label for="Date"><i class="zmdi zmdi-lock"></i></label> <input
-									type="date" name="date" id="date" placeholder="Date" required="required"/>
+									type="date" name="date" id="dateField" placeholder="Date" required="required"/>
 							</div>
 							<div class="form-group">
 							
@@ -120,6 +120,39 @@
 
 
 	</div>
+	<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var dateField = document.getElementById("dateField");
+    
+   
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); 
+    var yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+
+    
+    dateField.setAttribute("min", today);
+
+    
+    dateField.addEventListener("input", function () {
+      var selectedDate = dateField.value;
+      var selectedDay = new Date(selectedDate).getDay(); 
+
+      
+      if (selectedDate < today) {
+        alert("Please select a future date.");
+        dateField.value = "";
+      }
+
+      // Check if the selected date is a Sunday (day 0)
+      if (selectedDay === 0) {
+        alert("Sundays are not available for reservations.");
+        dateField.value = "";
+      }
+    });
+  });
+</script>
 	
 
 

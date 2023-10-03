@@ -13,3 +13,4 @@ databaseConfig.java
 sample-app.properties
 target/classes/vehicleService/databaseConfig.java
 
+databaseConfig.class
