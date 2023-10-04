@@ -33,7 +33,7 @@
 
 <body>
 <jsp:include page="navbar.jsp" />
-
+<input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
 
 
    <%
@@ -140,7 +140,7 @@
       var selectedDay = new Date(selectedDate).getDay(); 
 
       
-      if (selectedDate < today) {
+      if (selectedDate <= today) {
         alert("Please select a future date.");
         dateField.value = "";
       }
@@ -153,6 +153,25 @@
     });
   });
 </script>
+	<script type = "text/javascript">
+		var status = document.getElementById("status").value;
+		if(status == "success"){
+			alert("Congrats, You have successfully made a reservation ");
+		}
+		else if(status == "failed"){
+			alert("Sorry, something went wrong ");
+		}
+		else if(status == "invaliddate"){
+			alert("Enter date");
+		}
+		else if(status == "invalidtime"){
+			alert("Sorry wrong time input, select a time");
+		}
+		else if(status == "invalidLocation"){
+			alert("Sorry wrong Location , select correct location ");
+		}
+	
+	</script>
 	
 
 

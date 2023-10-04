@@ -37,35 +37,42 @@ public class reservationServlet extends HttpServlet {
         String dbUsername = databaseConfig.getDbUsername();
         String dbPassword = databaseConfig.getDbPassword();
 		
-//		if(uname==null || uname.equals("")) {
-//			request.setAttribute("status", "invalidName");
-//			dispatcher = request.getRequestDispatcher("registration.jsp");
-//			dispatcher.forward(request, response);
-//		}
-//		if(uemail==null || uemail.equals("")) {
-//			request.setAttribute("status", "invalidEmail");
-//			dispatcher = request.getRequestDispatcher("registration.jsp");
-//			dispatcher.forward(request, response);
-//		}
-//		if(upwd==null || upwd.equals("")) {
-//			request.setAttribute("status", "invalidUpwd");
-//			dispatcher = request.getRequestDispatcher("registration.jsp");
-//			dispatcher.forward(request, response);
-//		}else if(!upwd.equals(Reupwd)){
-//			request.setAttribute("status", "invalidComfpwd");
-//			dispatcher = request.getRequestDispatcher("registration.jsp");
-//			dispatcher.forward(request, response);
-//		}
-//		if(umobile==null || umobile.equals("")) {
-//			request.setAttribute("status", "invalidUmobile");
-//			dispatcher = request.getRequestDispatcher("registration.jsp");
-//			dispatcher.forward(request, response);
-//		}else if(umobile.length()==10) {
+		if(date==null || date.equals("")) {
+			request.setAttribute("status", "invaliddate");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(!time.equals("10:00:00") && !time.equals("11:00:00") && !time.equals("12:00:00")) {
+			request.setAttribute("status", "invalidtime");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(!location.equals("Colombo") && !location.equals("Kandy") && !location.equals("Galle")) {
+			request.setAttribute("status", "invalidLocation");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(vehicle_no==null || vehicle_no.equals("")) {
+			request.setAttribute("status", "invalidvehicle_no");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(mileage==null || mileage.equals("")) {
+			request.setAttribute("status", "invalidmileage");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+//		else if(umobile.length()==10) {
 //			request.setAttribute("status", "invalidUmobileLength");
 //			dispatcher = request.getRequestDispatcher("registration.jsp");
 //			dispatcher.forward(request, response);
 //		}
-		
+		else if (username==null || username.equals("")) {
+			request.setAttribute("status", "invalidusername");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -80,7 +87,7 @@ public class reservationServlet extends HttpServlet {
 			pst.setString(7, username);
 			
 			int rowCount = pst.executeUpdate();
-			dispatcher = request.getRequestDispatcher("index.jsp");
+			dispatcher = request.getRequestDispatcher("home.jsp");
 			
 			if(rowCount >0) {
 				request.setAttribute("status", "success");
@@ -98,6 +105,7 @@ public class reservationServlet extends HttpServlet {
 				
 				e.printStackTrace();
 			}
+		}
 		}
 	}
 
