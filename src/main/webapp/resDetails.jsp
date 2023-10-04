@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="java.util.List" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.ParseException" %>
+<%@ page import="java.util.Date" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,28 +34,64 @@
                 </tr>
             </thead>
             <tbody>
-             <%
-                    List<Map<String, String>> reservationList = (List<Map<String, String>>) request.getAttribute("reservationList");
-                    if (reservationList != null) {
-                        for (Map<String, String> reservation : reservationList) {
-                %>
+<%
+List<Map<String, String>> reservationList = (List<Map<String, String>>) request.getAttribute("reservationList");
+if (reservationList != null) {
+    
+    Collections.sort(reservationList, new Comparator<Map<String, String>>() {
+        @Override
+        public int compare(Map<String, String> r1, Map<String, String> r2) {
+           
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date date1 = dateFormat.parse(r1.get("date"));
+                Date date2 = dateFormat.parse(r2.get("date"));
+                return date2.compareTo(date1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }
+    });
+
+    for (Map<String, String> reservation : reservationList) {
+        String reservationDateStr = reservation.get("date");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date reservationDate = dateFormat.parse(reservationDateStr);
+        Date currentDate = new Date();
+        
+       
+        boolean isFutureReservation = reservationDate.after(currentDate);
+%>
                
-                            <tr>
-                                <td><%= reservation.get("date") %></td>
-                                <td><%= reservation.get("time") %></td>
-                                <td><%= reservation.get("location") %></td>
-                                <td><%= reservation.get("vehicle_no") %></td>
-                                <td><%= reservation.get("mileage") %></td>
-                                <td><%= reservation.get("message") %></td>
-                                <td><Button form="cancel-form-<%= reservation.get("booking_id") %>" type="submit">Cancel</Button></td>
-							</tr>
-							<form id="cancel-form-<%= reservation.get("booking_id") %>" action="cancelReservation" method="post">
-   								 <input type="hidden" name="booking_id" value="<%= reservation.get("booking_id") %>"/>
-							</form>
+        <tr>
+            <td><%= reservation.get("date") %></td>
+            <td><%= reservation.get("time") %></td>
+            <td><%= reservation.get("location") %></td>
+            <td><%= reservation.get("vehicle_no") %></td>
+            <td><%= reservation.get("mileage") %></td>
+            <td><%= reservation.get("message") %></td>
+            <td>
                 <%
-                        }
-                    }
+                if (isFutureReservation) {
                 %>
+                <form id="cancel-form-<%= reservation.get("booking_id") %>" action="cancelReservation" method="post">
+                    <input type="hidden" name="booking_id" value="<%= reservation.get("booking_id") %>"/>
+                    <Button form="cancel-form-<%= reservation.get("booking_id") %>" type="submit">Cancel</Button>
+                </form>
+                <%
+                } else {
+                %>
+                <span>Cannot cancel</span>
+                <%
+                }
+                %>
+            </td>
+        </tr>
+<%
+    }
+}
+%>
             </tbody>
         </table>
     </div>

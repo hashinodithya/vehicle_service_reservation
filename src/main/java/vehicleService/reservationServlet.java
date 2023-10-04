@@ -67,8 +67,7 @@ public class reservationServlet extends HttpServlet {
             request.setAttribute("status", "invalidusername");
             dispatcher = request.getRequestDispatcher("home.jsp");
             dispatcher.forward(request, response);
-        }  else if (message == null || !message.matches("^[A-Za-z0-9 ,._-@()]*$")) {
-            // Check if message contains only alphanumeric characters, spaces, commas, periods, and parentheses
+        }  else if (message == null || !message.matches("^[A-Za-z0-9 ,._\\-@()?/]*$")) {
             request.setAttribute("status", "invalidmessage");
             dispatcher = request.getRequestDispatcher("home.jsp");
             dispatcher.forward(request, response); 
