@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Servlet implementation class reservationServlet
  */
@@ -49,7 +54,7 @@ public class reservationServlet extends HttpServlet {
             request.setAttribute("status", "invalidLocation");
             dispatcher = request.getRequestDispatcher("home.jsp");
             dispatcher.forward(request, response);
-        } else if (vehicle_no == null || vehicle_no.equals("")) {
+        } else if (vehicle_no == null || !vehicle_no.matches("^[A-Za-z0-9 ]*$")) {
             request.setAttribute("status", "invalidvehicle_no");
             dispatcher = request.getRequestDispatcher("home.jsp");
             dispatcher.forward(request, response);
@@ -61,7 +66,18 @@ public class reservationServlet extends HttpServlet {
             request.setAttribute("status", "invalidusername");
             dispatcher = request.getRequestDispatcher("home.jsp");
             dispatcher.forward(request, response);
-        } else {
+        }  else if (message == null || !message.matches("^[A-Za-z0-9 ,.@()]*$")) {
+            // Check if message contains only alphanumeric characters, spaces, commas, periods, and parentheses
+            request.setAttribute("status", "invalidmessage");
+            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher.forward(request, response); 
+        }  else if (!isValidFutureDate(date)) {
+            request.setAttribute("status", "invaliddate");
+            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+        else {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
@@ -83,15 +99,18 @@ public class reservationServlet extends HttpServlet {
                 }
                 
                
-                PreparedStatement pst = con.prepareStatement("INSERT INTO vehicle_service(date, vehicle_no, mileage, message, username) VALUES (?, ?, ?, ?, ?)");
+                PreparedStatement pst = con.prepareStatement("INSERT INTO vehicle_service(date, time, location, vehicle_no, mileage, message, username) VALUES (?, ?, ?, ?, ?, ?, ?)");
                 pst.setString(1, date);
-                pst.setString(2, vehicle_no);
-                pst.setString(3, mileage);
-                pst.setString(4, message);
-                pst.setString(5, username);
+                pst.setString(2, time);
+                pst.setString(3, location);
+                pst.setString(4, vehicle_no);
+                pst.setString(5, mileage);
+                pst.setString(6, message);
+                pst.setString(7, username);
+
 
                 int rowCount = pst.executeUpdate();
-                dispatcher = request.getRequestDispatcher("home.jsp");
+                dispatcher = request.getRequestDispatcher("index.jsp");
 
                 if (rowCount > 0) {
                     request.setAttribute("status", "success");
@@ -110,6 +129,28 @@ public class reservationServlet extends HttpServlet {
             }
         }
 
+	}
+	private boolean isValidFutureDate(String dateStr) {
+	    try {
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	        Date date = sdf.parse(dateStr);
+	        Calendar calendar = Calendar.getInstance();
+	        calendar.setTime(date);
+
+	        
+	        if (date.before(new Date())) {
+	            return false;
+	        }
+
+	        
+	        if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+	            return false;
+	        }
+
+	        return true;
+	    } catch (ParseException e) {
+	        return false; 
+	    }
 	}
 
 }

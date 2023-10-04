@@ -155,10 +155,7 @@
 </script>
 	<script type = "text/javascript">
 		var status = document.getElementById("status").value;
-		if(status == "success"){
-			alert("Congrats, You have successfully made a reservation ");
-		}
-		else if(status == "failed"){
+		if(status == "failed"){
 			alert("Sorry, something went wrong ");
 		}
 		else if(status == "invaliddate"){
@@ -176,7 +173,10 @@
 		else if(status == "invalidmileage"){
 			alert("Sorry wrong mileage , select correct mileage ");
 		}
-		else if(status == "invalidmileage"){
+		else if(status == "invalidmessage"){
+			alert("Sorry wrong message , select correct message ");
+		}
+		else if(status == "invalidusername"){
 			alert("Sorry wrong mileage , select correct mileage ");
 		}
 		
