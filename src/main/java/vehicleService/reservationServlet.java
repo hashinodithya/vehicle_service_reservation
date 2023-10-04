@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * Servlet implementation class reservationServlet
@@ -66,7 +67,7 @@ public class reservationServlet extends HttpServlet {
             request.setAttribute("status", "invalidusername");
             dispatcher = request.getRequestDispatcher("home.jsp");
             dispatcher.forward(request, response);
-        }  else if (message == null || !message.matches("^[A-Za-z0-9 ,.@()]*$")) {
+        }  else if (message == null || !message.matches("^[A-Za-z0-9 ,._-@()]*$")) {
             // Check if message contains only alphanumeric characters, spaces, commas, periods, and parentheses
             request.setAttribute("status", "invalidmessage");
             dispatcher = request.getRequestDispatcher("home.jsp");
@@ -76,6 +77,10 @@ public class reservationServlet extends HttpServlet {
             dispatcher = request.getRequestDispatcher("home.jsp");
             dispatcher.forward(request, response);
             return;
+        }  else if (!isValidEmail(username)) {
+            request.setAttribute("status", "invalidusername");
+            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher.forward(request, response);
         }
         else {
             try {
@@ -151,6 +156,11 @@ public class reservationServlet extends HttpServlet {
 	    } catch (ParseException e) {
 	        return false; 
 	    }
+	}
+	
+	private boolean isValidEmail(String email) {
+	    String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+	    return Pattern.compile(regex).matcher(email).matches();
 	}
 
 }
