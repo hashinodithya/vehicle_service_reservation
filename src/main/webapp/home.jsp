@@ -170,6 +170,16 @@
 		else if(status == "invalidLocation"){
 			alert("Sorry wrong Location , select correct location ");
 		}
+		else if(status == "invalidvehicle_no"){
+			alert("Sorry wrong vehicle_no , select enter valid vehicle_no ");
+		}
+		else if(status == "invalidmileage"){
+			alert("Sorry wrong mileage , select correct mileage ");
+		}
+		else if(status == "invalidmileage"){
+			alert("Sorry wrong mileage , select correct mileage ");
+		}
+		
 	
 	</script>
 	
