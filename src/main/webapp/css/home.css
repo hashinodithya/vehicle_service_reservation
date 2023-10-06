@@ -5,7 +5,7 @@ body, div, h1, ul, li, button, input {
   box-sizing: border-box;
 }
 
-/* Center the main content vertically and horizontally */
+
 .main {
   display: flex;
   flex-direction: column;
@@ -14,14 +14,14 @@ body, div, h1, ul, li, button, input {
   min-height: 100vh;
 }
 
-/* Style buttons with the button-link class */
+
 .button-link, .form-submit {
   display: inline-block;
   background: #6dabe4;
   color: #fff;
   border: none;
   width: auto;
-  padding: 15px 39px;
+  padding: 15px 50px;
   border-radius: 5px;
   margin: 10px;
   cursor: pointer;
@@ -36,14 +36,26 @@ a{
 	text-decoration: none;
 	color: #fff;
 }
-/* Hide the username input */
+
+
 input[name="username"] {
   display: none;
 }
 
-/* Responsive styles */
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  max-width: 100%; 
+  height: auto; 
+  z-index: -1;
+  opacity: 0.7;
+}
+
+
 @media (max-width: 768px) {
   .button-link, .form-submit {
-    width: 100%; /* Make buttons full-width on smaller screens */
+    width: 100%; 
   }
 }

@@ -29,14 +29,30 @@ body {
   height: 62px;
 }
 
+
 .navbar .menu-items {
   display: flex;
+  background-color: rgba(255, 255, 255, 0.9); /* Set a background color with opacity */
+  color: #0e2431; /* Change the text color */
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .9); /* Adjust background opacity */
+  height: 100vh;
+  width: 100%;
+  transform: translate(-150%);
+  display: flex;
+  flex-direction: column;
+  margin-left: -40px;
+  padding-left: 50px;
+  transition: transform 0.5s ease-in-out;
+  text-align: center;
+  opacity: 0.9; /* Increase the opacity */
+  padding-top: 20px; /* Add padding to improve readability */
 }
 
-.navbar .nav-container li {
-  list-style: none;
+.navbar .menu-items li {
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
-
 .navbar .nav-container a {
   text-decoration: none;
   color: #0e2431;

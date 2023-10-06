@@ -35,7 +35,7 @@ body {
 }
 
 .user-card-full h6 {
-    font-size: 36px; /* Use a larger font size */
+    font-size: 24px; /* Use a larger font size */
     margin-top: 20px; /* Add margin-top to match other pages */
 }
 
@@ -58,7 +58,7 @@ body {
 
 /* Style the edit icon */
 .feather.icon-edit {
-    font-size: 20px;
+    font-size: 15px;
     color: #fff; /* Use white color for the icon */
     margin-top: 10px; /* Adjust margin-top as needed */
     cursor: pointer;
@@ -70,7 +70,7 @@ body {
 }
 
 .user-card-full .social-link li a {
-    font-size: 20px;
+    font-size: 15px;
     margin-right: 10px; /* Adjust margin as needed */
     color: #777; /* Use a consistent color for social links */
 }
