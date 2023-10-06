@@ -487,17 +487,16 @@ label.valid {
     margin-right: 0px;
     margin-bottom: 10px; } }
 
-/*# sourceMappingURL=style.css.map */
-/* Style the location and time select elements */
+
 #location, #time {
   width: 100%;
-  padding: 6px 10px; /* Adjust padding as needed */
+  padding: 6px 10px; 
   border: 1px solid #999;
   border-radius: 5px;
   font-family: Poppins;
   box-sizing: border-box;
-  appearance: none; /* Hide the default dropdown arrow */
-  background-image: url('path-to-your-custom-arrow-icon.png'); /* Replace with your custom arrow icon */
+  appearance: none; 
+  background-image: url('../asserts/arrow-down.png'); 
   background-repeat: no-repeat;
   background-position: right center;
   cursor: pointer;

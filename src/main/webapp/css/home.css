@@ -1,0 +1,49 @@
+/* Reset default margin and padding */
+body, div, h1, ul, li, button, input {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Center the main content vertically and horizontally */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Style buttons with the button-link class */
+.button-link, .form-submit {
+  display: inline-block;
+  background: #6dabe4;
+  color: #fff;
+  border: none;
+  width: auto;
+  padding: 15px 39px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.button-link:hover, .form-submit:hover {
+  background: #4292dc;
+}
+a{
+	text-decoration: none;
+	color: #fff;
+}
+/* Hide the username input */
+input[name="username"] {
+  display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .button-link, .form-submit {
+    width: 100%; /* Make buttons full-width on smaller screens */
+  }
+}

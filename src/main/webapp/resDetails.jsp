@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>User profile</title>
+<title>Reservation Details</title>
 <link rel="stylesheet" href="css/resDetails.css">
 </head>
 

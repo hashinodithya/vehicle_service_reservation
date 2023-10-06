@@ -45,40 +45,40 @@ public class reservationServlet extends HttpServlet {
 		
         if (date == null || date.equals("")) {
             request.setAttribute("status", "invaliddate");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
         } else if (!time.equals("10:00:00") && !time.equals("11:00:00") && !time.equals("12:00:00")) {
             request.setAttribute("status", "invalidtime");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
         } else if (!location.equals("Colombo") && !location.equals("Kandy") && !location.equals("Galle")) {
             request.setAttribute("status", "invalidLocation");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
         } else if (vehicle_no == null || !vehicle_no.matches("^[A-Za-z0-9 ]*$")) {
             request.setAttribute("status", "invalidvehicle_no");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
         } else if (mileage == null || mileage.equals("")) {
             request.setAttribute("status", "invalidmileage");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
         } else if (username == null || username.equals("")) {
             request.setAttribute("status", "invalidusername");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
         }  else if (message == null || !message.matches("^[A-Za-z0-9 ,._\\-@()?/]*$")) {
             request.setAttribute("status", "invalidmessage");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response); 
         }  else if (!isValidFutureDate(date)) {
             request.setAttribute("status", "invaliddate");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
             return;
         }  else if (!isValidEmail(username)) {
             request.setAttribute("status", "invalidusername");
-            dispatcher = request.getRequestDispatcher("home.jsp");
+            dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
         }
         else {
@@ -91,13 +91,13 @@ public class reservationServlet extends HttpServlet {
                     int mileageValue = Integer.parseInt(mileage);
                     if (mileageValue <= 0) {
                         request.setAttribute("status", "invalidmileage");
-                        dispatcher = request.getRequestDispatcher("home.jsp");
+                        dispatcher = request.getRequestDispatcher("form.jsp");
                         dispatcher.forward(request, response);
                         return; 
                     }
                 } catch (NumberFormatException e) {
                     request.setAttribute("status", "invalidmileage");
-                    dispatcher = request.getRequestDispatcher("home.jsp");
+                    dispatcher = request.getRequestDispatcher("form.jsp");
                     dispatcher.forward(request, response);
                     return; 
                 }
@@ -114,7 +114,7 @@ public class reservationServlet extends HttpServlet {
 
 
                 int rowCount = pst.executeUpdate();
-                dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher = request.getRequestDispatcher("home.jsp");
 
                 if (rowCount > 0) {
                     request.setAttribute("status", "success");
