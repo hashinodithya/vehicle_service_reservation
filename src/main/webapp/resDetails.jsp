@@ -18,6 +18,7 @@
 </head>
 
 <body>
+<input type="hidden" id="status" value="<%= request.getAttribute("cancellationMessage") %>">
 <jsp:include page="navbar.jsp" />
 	<h2>Reservation Table</h2>
     <div class="table-wrapper">
@@ -95,5 +96,19 @@ if (reservationList != null) {
             </tbody>
         </table>
     </div>
+</script>
+	<script type = "text/javascript">
+		var status = document.getElementById("cancellationMessage").value;
+		if(status == "success"){
+			alert("Reservation canceled successfully ");
+		}
+		else if(status == "failed"){
+			alert("Failed to cancel the reservation");
+		}
+		
+
+		
+	
+	</script>
 </body>
 </html>

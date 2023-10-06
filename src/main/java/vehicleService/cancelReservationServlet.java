@@ -46,10 +46,10 @@ public class cancelReservationServlet extends HttpServlet {
 
 	            if (rowCount > 0) {
 	                
-	                request.setAttribute("cancellationMessage", "Reservation canceled successfully.");
+	                request.setAttribute("cancellationMessage", "success.");
 	            } else {
 	                
-	                request.setAttribute("cancellationMessage", "Failed to cancel reservation.");
+	                request.setAttribute("cancellationMessage", "failed.");
 	            }
 
 	            con.close();
@@ -59,7 +59,7 @@ public class cancelReservationServlet extends HttpServlet {
 	            request.setAttribute("cancellationMessage", "An error occurred while canceling the reservation.");
 	        }
 
-	        response.sendRedirect("index.jsp");
+	        response.sendRedirect("home.jsp");
 	}
 
 }
