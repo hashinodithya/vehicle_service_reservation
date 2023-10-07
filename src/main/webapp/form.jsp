@@ -168,7 +168,7 @@
 			alert("Sorry wrong Location , select correct location ");
 		}
 		else if(status == "invalidvehicle_no"){
-			alert("Sorry wrong vehicle_no , select enter valid vehicle_no ");
+			alert("Sorry, check the vehicle number. Only letters and numbers are allowed ");
 		}
 		else if(status == "invalidmileage"){
 			alert("Sorry wrong mileage , select correct mileage ");
