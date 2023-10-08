@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,13 +29,16 @@ public class reservationServlet extends HttpServlet {
        
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String username = (String) session.getAttribute("username");
+		
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
 		String location = request.getParameter("location");
 		String vehicle_no = request.getParameter("vehicle_no");
 		String mileage = request.getParameter("mileage");	
 		String message = request.getParameter("message");
-		String username = request.getParameter("user_name");
+
 
 		RequestDispatcher dispatcher = null;
 		Connection con = null;

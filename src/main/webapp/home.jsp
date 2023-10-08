@@ -32,6 +32,8 @@
            for (Map.Entry<String, String> entry : saml2SSOAttributes.entrySet()) {
         	   if ("http://wso2.org/claims/username".equals(entry.getKey())) {
                    username = entry.getValue();
+                   
+                   session.setAttribute("username", username);
               }
            }
        }
@@ -50,7 +52,7 @@
   		
   		<form  action="viewReservation" method="post" >
       		<div>
-      		<input  type="email" name="username" value="<%=username%>"/>
+      		
          		 <input class="form-submit" type="submit" value="View Reservation" />
       		</div>
       
@@ -58,6 +60,7 @@
   	</div>
    
   </div>
+
 
 
 </body>

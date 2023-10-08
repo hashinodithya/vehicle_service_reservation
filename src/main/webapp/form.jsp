@@ -42,6 +42,8 @@
            for (Map.Entry<String, String> entry : saml2SSOAttributes.entrySet()) {
         	   if ("http://wso2.org/claims/username".equals(entry.getKey())) {
                    username = entry.getValue();
+                   
+                   session.setAttribute("username", username);
               }
            }
        }
@@ -59,11 +61,6 @@
 					
 						<form method="post" action="reservation" class="register-form"
 							id="register-form">
-							<div class="form-group">
-								<label for="user_name"><i
-									class="zmdi zmdi-account material-icons-name"></i></label> <input
-									type="email" name="user_name" id="name" placeholder=<%=username %> value=<%=username %> required="required" />
-							</div>
 							
 							<div class="form-group">
 								<label for="Date"><i class="zmdi zmdi-lock"></i></label> <input
@@ -177,7 +174,7 @@
 			alert("Sorry wrong message , select correct message ");
 		}
 		else if(status == "invalidusername"){
-			alert("Sorry wrong mileage , select correct mileage ");
+			alert("Problem with the user name ");
 		}
 		
 	
