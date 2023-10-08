@@ -34,7 +34,8 @@ String username = null;
 String email = null;
 String country = null;
 String mobile = null;
-String name = null;
+String fname = null;
+String lname = null;
 if (saml2SSOAttributes != null) {
     for (Map.Entry<String, String> entry : saml2SSOAttributes.entrySet()) {
         String attributeName = entry.getKey();
@@ -52,7 +53,10 @@ if (saml2SSOAttributes != null) {
             mobile = attributeValue;
         }
         else if ("http://wso2.org/claims/givenname".equals(attributeName)) {
-            name = attributeValue;
+            fname = attributeValue;
+        }
+        else if ("http://wso2.org/claims/lastname".equals(attributeName)) {
+            lname = attributeValue;
         }
     }
 }
@@ -69,7 +73,7 @@ if (saml2SSOAttributes != null) {
                                                                 <div class="m-b-25">
                                                                     <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
                                                                 </div>
-                                                                <h6 class="f-w-600">Name : <%=name %></h6>
+                                                                <h6 class="f-w-600">Name : <%=fname %> <%=lname %></h6>
                                                                 <p>User Name : <%=username %></p>
                                                                 <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                                             </div>
