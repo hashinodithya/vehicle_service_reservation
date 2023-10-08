@@ -63,39 +63,41 @@
 							id="register-form">
 							
 							<div class="form-group">
-								<label for="Date"><i class="zmdi zmdi-lock"></i></label> <input
+								<label for="date"><i class="zmdi zmdi-lock"></i></label>Select a Date*<input
 									type="date" name="date" id="dateField" placeholder="Date" required="required"/>
 							</div>
-							<div class="form-group">
 							
+							<div class="form-group">
+								<label for="time"><i class="zmdi zmdi-lock"></i></label>Select a Time*
 								<select id="time" name="time"  class="">
-                            <option value="10:00:00">10 AM</option>
-                            <option value="11:00:00">11 AM</option>
-                            <option value="12:00:00">12 PM</option>
+                            		<option value="10:00:00">10 AM</option>
+                            		<option value="11:00:00">11 AM</option>
+                            		<option value="12:00:00">12 PM</option>
                             
-                        </select>
+                        		</select>
 							</div>
 							<div class="form-group">
+							<label for="location"><i class="zmdi zmdi-lock"></i></label>Select a service location*
 								<select id="location" name="location"  class="">
-                            <option value="Colombo">Colombo</option>
-                            <option value="Galle">Galle</option>
-                            <option value="Kandy">Kandy</option>
+                            		<option value="Colombo">Colombo</option>
+                           			 <option value="Galle">Galle</option>
+                            		<option value="Kandy">Kandy</option>
                             
-                        </select>
+                        		</select>
 							</div>
 							<div class="form-group">
 								<label for="message"><i
-									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									class="zmdi zmdi-account material-icons-name"></i></label>Add additional information* <input
 									type="text" name="message" id="name" placeholder="Your Message" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="vehicle_no"><i
-									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									class="zmdi zmdi-account material-icons-name"></i></label>Enter vehicle number*(CBB 3321) <input
 									type="text" name="vehicle_no" id="name" placeholder="Vehicle Number " required="required" />
 							</div>
 							<div class="form-group">
 								<label for="mileage"><i
-									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									class="zmdi zmdi-account material-icons-name"></i></label>Enter Current mileage*<input
 									type="Number" name="mileage" id="name" placeholder="Current Mileage" required="required" />
 							</div>
 							
