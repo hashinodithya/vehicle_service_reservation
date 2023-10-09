@@ -14,7 +14,6 @@
 			<li><a href="home.jsp">Home</a></li>
             <li><a href="form.jsp">Book reservation </a></li>
             <li><a href="profile.jsp">Profile</a></li>
-            <li><a href="#">View bookings</a></li>
             <li><a href="logout?SAML2.HTTPBinding=HTTP-POST">Logout</a></li>
           </div>
         </div>
