@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>User Profile</title>
 <link rel="stylesheet" href="css/profile.css">
 </head>
  <%@ page import="io.asgardeo.java.saml.sdk.util.SSOAgentConstants" %>

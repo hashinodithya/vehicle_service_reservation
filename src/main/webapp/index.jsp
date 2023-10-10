@@ -15,7 +15,7 @@
 	 
 	    <form  action="samlsso?SAML2.HTTPBinding=HTTP-POST" method="post" >
       		<div>
-         		 <input class="form-submit" type="submit" value="log in" />
+         		 <input  class="form-submit" type="submit" value="log in" />
       		</div>
       
   		</form>
