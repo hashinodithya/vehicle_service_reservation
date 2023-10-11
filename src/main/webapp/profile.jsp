@@ -106,5 +106,6 @@ if (saml2SSOAttributes != null) {
                                                 </div>
                                             </div>
 
+ <jsp:include page="footer.jsp" />
 </body>
 </html>
