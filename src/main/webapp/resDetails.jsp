@@ -110,5 +110,6 @@ if (reservationList != null) {
 		
 	
 	</script>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>
