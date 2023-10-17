@@ -1,7 +1,7 @@
 <footer>
 <div class="footer">
 <div class="container footer-container">
-	<h6>all rights received</h6>
+	<h6>All rights are received</h6>
 </div>
 </div>
 </footer>
