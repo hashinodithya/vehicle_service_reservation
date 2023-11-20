@@ -47,7 +47,18 @@ public class reservationServlet extends HttpServlet {
         String dbUsername = databaseConfig.getDbUsername();
         String dbPassword = databaseConfig.getDbPassword();
 		
-        if (date == null || date.equals("")) {
+        String csrfTokenFromRequest = request.getParameter("csrfToken");
+        String csrfTokenFromSession = (String) session.getAttribute("csrfToken");
+        
+        //Validation of CSRF token
+        if (csrfTokenFromRequest == null || !csrfTokenFromRequest.equals(csrfTokenFromSession)) {
+           // CSRF token is invalid
+           request.setAttribute("status", "csrfError");
+           dispatcher = request.getRequestDispatcher("error.jsp");
+           dispatcher.forward(request, response);
+           return;
+        }
+        else if (date == null || date.equals("")) {
             request.setAttribute("status", "invaliddate");
             dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);

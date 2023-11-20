@@ -6,6 +6,8 @@
    <%@ page import="io.asgardeo.java.saml.sdk.bean.LoggedInSessionBean" %>
    <%@ page import="io.asgardeo.java.saml.sdk.bean.LoggedInSessionBean.SAML2SSO" %>
    <%@ page import="java.util.Map" %>
+   <%@ page import="java.security.SecureRandom" %>
+   <%@ page import="java.util.Base64" %>
    
      <%
     // Retrieve the session bean.
@@ -19,6 +21,16 @@
 
     // Authenticated user's attributes
     Map<String, String> saml2SSOAttributes = samlResponse.getSubjectAttributes();
+   %>
+   
+   <%
+   // Generate CSRF token
+   byte[] token = new byte[32];
+   new SecureRandom().nextBytes(token);
+   String csrfToken = Base64.getEncoder().encodeToString(token);
+
+   // Store CSRF token in session
+   session.setAttribute("csrfToken", csrfToken);
    %>
    
 <head>
@@ -100,6 +112,8 @@
 									class="zmdi zmdi-account material-icons-name"></i></label>Enter Current mileage*<input
 									type="Number" name="mileage" id="name" placeholder="Current Mileage" required="required" />
 							</div>
+							
+							<input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
 							
 							<div class="form-group form-button">
 								<input type="submit" name="signup" id="signup"
