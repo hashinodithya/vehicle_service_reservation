@@ -35,12 +35,26 @@ public class reservationDetailsServlet extends HttpServlet {
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet resultSet = null;
+      //  RequestDispatcher dispatcher = null;
         
         String dbUrl = databaseConfig.getDbUrl();
         String dbUsername = databaseConfig.getDbUsername();
         String dbPassword = databaseConfig.getDbPassword();
 
-        
+//        String csrfTokenFromRequest = request.getParameter("csrfToken");
+//        String csrfTokenFromSession = (String) session.getAttribute("csrfTokenDetails");
+//        
+//        System.out.println("CSRF Token from Request: " + csrfTokenFromRequest);
+//        System.out.println("CSRF Token from Session: " + csrfTokenFromSession);
+//
+//
+//        if (csrfTokenFromRequest == null || !csrfTokenFromRequest.equals(csrfTokenFromSession)) {
+//           
+//           request.setAttribute("status", "csrfError");
+//           dispatcher = request.getRequestDispatcher("error.jsp");
+//           dispatcher.forward(request, response);
+//           return;
+//        }
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);

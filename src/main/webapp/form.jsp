@@ -30,7 +30,7 @@
    String csrfToken = Base64.getEncoder().encodeToString(token);
 
    // Store CSRF token in session
-   session.setAttribute("csrfToken", csrfToken);
+   session.setAttribute("csrfTokenForm", csrfToken);
    %>
    
 <head>

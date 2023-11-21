@@ -8,6 +8,8 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.ParseException" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.util.Base64" %>
 
 <!DOCTYPE html>
 <html>
@@ -78,6 +80,7 @@ if (reservationList != null) {
                 %>
                 <form id="cancel-form-<%= reservation.get("booking_id") %>" action="cancelReservation" method="post">
                     <input type="hidden" name="booking_id" value="<%= reservation.get("booking_id") %>"/>
+                    
                     <Button form="cancel-form-<%= reservation.get("booking_id") %>" type="submit">Cancel</Button>
                 </form>
                 <%
