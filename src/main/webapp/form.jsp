@@ -8,6 +8,8 @@
    <%@ page import="java.util.Map" %>
    <%@ page import="java.security.SecureRandom" %>
    <%@ page import="java.util.Base64" %>
+   <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
+   
    
      <%
     // Retrieve the session bean.
@@ -93,17 +95,20 @@
 							<div class="form-group">
 								<label for="message"><i
 									class="zmdi zmdi-account material-icons-name"></i></label>Add additional information* <input
-									type="text" name="message" id="name" placeholder="Your Message" required="required" />
+									type="text" name="message" id="name" placeholder="Your Message" required="required" 
+									value="<%= StringEscapeUtils.escapeHtml4(request.getParameter("message") != null ? request.getParameter("message") : "") %>"/>
 							</div>
 							<div class="form-group">
 								<label for="vehicle_no"><i
 									class="zmdi zmdi-account material-icons-name"></i></label>Enter vehicle number*(CBB 3321) <input
-									type="text" name="vehicle_no" id="name" placeholder="Vehicle Number " required="required" />
+									type="text" name="vehicle_no" id="name" placeholder="Vehicle Number " required="required" 
+									value="<%= StringEscapeUtils.escapeHtml4(request.getParameter("vehicle_no") != null ? request.getParameter("vehicle_no") : "") %>"/>
 							</div>
 							<div class="form-group">
 								<label for="mileage"><i
 									class="zmdi zmdi-account material-icons-name"></i></label>Enter Current mileage*<input
-									type="Number" name="mileage" id="name" placeholder="Current Mileage" required="required" />
+									type="Number" name="mileage" id="name" placeholder="Current Mileage" required="required" 
+									value="<%= StringEscapeUtils.escapeHtml4(request.getParameter("mileage") != null ? request.getParameter("mileage") : "") %>"/>
 							</div>
 							
 							<input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
