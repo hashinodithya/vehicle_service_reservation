@@ -11,11 +11,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class cancelReservationServlet
@@ -30,10 +32,28 @@ public class cancelReservationServlet extends HttpServlet {
 		
 		 Connection con = null;
 	        PreparedStatement pst = null;
+	        
 	        String dbUrl = databaseConfig.getDbUrl();
 	        String dbUsername = databaseConfig.getDbUsername();
 	        String dbPassword = databaseConfig.getDbPassword();
 	        
+	        RequestDispatcher dispatcher = null;
+	        HttpSession session = request.getSession();
+	        
+	        String csrfTokenFromRequest = request.getParameter("csrfToken");
+	        String csrfTokenFromSession = (String) session.getAttribute("csrfToken");
+	        
+	        System.out.println("CSRF Token from Request: " + csrfTokenFromRequest);
+	        System.out.println("CSRF Token from Session: " + csrfTokenFromSession);
+
+
+	        if (csrfTokenFromRequest == null || !csrfTokenFromRequest.equals(csrfTokenFromSession)) {
+	           
+	           request.setAttribute("status", "csrfError");
+	           dispatcher = request.getRequestDispatcher("error.jsp");
+	           dispatcher.forward(request, response);
+	           return;
+	        }
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
