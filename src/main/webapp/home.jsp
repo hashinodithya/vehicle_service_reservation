@@ -61,7 +61,7 @@
 	 
   		<button class="button-link"><a href="form.jsp" > Book a car</a></button>
   		<button class="button-link"><a href="profile.jsp" > User Profile</a></button>
-  		<button class="button-link"><a href="logout?SAML2.HTTPBinding=HTTP-POST">Logout</a></button>
+  		<button class="button-link"><a href="logout?SAML2.HTTPBinding=HTTP-POST&csrfToken=<%= csrfToken %>">Logout</a></button>
   		
   		<form  action="viewReservation" method="post" >
       		<div>

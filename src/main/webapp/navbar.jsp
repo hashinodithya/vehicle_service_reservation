@@ -1,3 +1,6 @@
+<%
+   String csrfToken = (String) session.getAttribute("csrfToken");
+%>
 <nav>
       <div class="navbar">
         <div class="container nav-container">
@@ -14,7 +17,7 @@
 			<li><a href="home.jsp">Home</a></li>
             <li><a href="form.jsp">Book reservation </a></li>
             <li><a href="profile.jsp">Profile</a></li>
-            <li><a href="logout?SAML2.HTTPBinding=HTTP-POST">Logout</a></li>
+            <li><a href="logout?SAML2.HTTPBinding=HTTP-POST&csrfToken=<%= csrfToken %>">Logout</a></li>
           </div>
         </div>
       </div>
