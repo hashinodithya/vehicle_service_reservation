@@ -11,6 +11,8 @@
    <%@ page import="io.asgardeo.java.saml.sdk.bean.LoggedInSessionBean" %>
    <%@ page import="io.asgardeo.java.saml.sdk.bean.LoggedInSessionBean.SAML2SSO" %>
    <%@ page import="java.util.Map" %>
+   <%@ page import="java.security.SecureRandom" %>
+   <%@ page import="java.util.Base64" %>
    
      <%
     // Retrieve the session bean.
@@ -38,6 +40,17 @@
            }
        }
    %>
+   
+      
+   <%
+   // Generate CSRF token
+   byte[] token = new byte[32];
+   new SecureRandom().nextBytes(token);
+   String csrfToken = Base64.getEncoder().encodeToString(token);
+
+   // Store CSRF token in session
+   session.setAttribute("csrfToken", csrfToken);
+   %>
 <body>
 <jsp:include page="navbar.jsp" />
 	
@@ -52,7 +65,7 @@
   		
   		<form  action="viewReservation" method="post" >
       		<div>
-      		
+      			<input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
          		 <input class="form-submit" type="submit" value="View Reservation" />
       		</div>
       

@@ -22,16 +22,9 @@
     // Authenticated user's attributes
     Map<String, String> saml2SSOAttributes = samlResponse.getSubjectAttributes();
    %>
-   
-   <%
-   // Generate CSRF token
-   byte[] token = new byte[32];
-   new SecureRandom().nextBytes(token);
-   String csrfToken = Base64.getEncoder().encodeToString(token);
-
-   // Store CSRF token in session
-   session.setAttribute("csrfTokenForm", csrfToken);
-   %>
+	<%
+   String csrfToken = (String) session.getAttribute("csrfToken");
+%>
    
 <head>
 <meta charset="ISO-8859-1">

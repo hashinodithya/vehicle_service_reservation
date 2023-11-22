@@ -48,7 +48,7 @@ public class reservationServlet extends HttpServlet {
         String dbPassword = databaseConfig.getDbPassword();
 		
         String csrfTokenFromRequest = request.getParameter("csrfToken");
-        String csrfTokenFromSession = (String) session.getAttribute("csrfTokenForm");
+        String csrfTokenFromSession = (String) session.getAttribute("csrfToken");
         
         //Validation of CSRF token
         if (csrfTokenFromRequest == null || !csrfTokenFromRequest.equals(csrfTokenFromSession)) {
