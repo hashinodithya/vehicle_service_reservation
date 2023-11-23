@@ -31,7 +31,8 @@ public class reservationServlet extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String username = (String) session.getAttribute("username");
+		String userNameFromSession = (String) session.getAttribute("username");
+		String userNameFromRequest = request.getParameter("userName");
 		
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
@@ -39,7 +40,8 @@ public class reservationServlet extends HttpServlet {
 		String vehicle_no = request.getParameter("vehicle_no");
 		String mileage = request.getParameter("mileage");	
 		String message = request.getParameter("message");
-
+		
+		
 
 		RequestDispatcher dispatcher = null;
 		Connection con = null;
@@ -54,7 +56,9 @@ public class reservationServlet extends HttpServlet {
         //HTTPOnly flag for the csrfToken cookie
         Cookie csrfTokenCookie = new Cookie("csrfToken", csrfTokenFromSession);
         csrfTokenCookie.setHttpOnly(true);
+        csrfTokenCookie.setSecure(true);
         response.addCookie(csrfTokenCookie);
+        
         //Validation of CSRF token
         if (csrfTokenFromRequest == null || !csrfTokenFromRequest.equals(csrfTokenFromSession)) {
            // CSRF token is invalid
@@ -62,8 +66,12 @@ public class reservationServlet extends HttpServlet {
            dispatcher = request.getRequestDispatcher("error.jsp");
            dispatcher.forward(request, response);
            return;
-        }
-        else if (date == null || date.equals("")) {
+        }else if (! userNameFromSession.equals(userNameFromRequest)) {
+        	request.setAttribute("status", "userNameError");
+            dispatcher = request.getRequestDispatcher("error.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }else if (date == null || date.equals("")) {
             request.setAttribute("status", "invaliddate");
             dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
@@ -83,11 +91,7 @@ public class reservationServlet extends HttpServlet {
             request.setAttribute("status", "invalidmileage");
             dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
-        } else if (username == null || username.equals("")) {
-            request.setAttribute("status", "invalidusername");
-            dispatcher = request.getRequestDispatcher("form.jsp");
-            dispatcher.forward(request, response);
-        }  else if (message == null || !message.matches("^[A-Za-z0-9 ,._\\-@()?/]*$")) {
+        } else if (message == null || !message.matches("^[A-Za-z0-9 ,._\\-@()?/]*$")) {
             request.setAttribute("status", "invalidmessage");
             dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response); 
@@ -96,7 +100,11 @@ public class reservationServlet extends HttpServlet {
             dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
             return;
-        }  else if (!isValidEmail(username)) {
+        }  else if (!isValidEmail(userNameFromSession)) {
+            request.setAttribute("status", "invalidusername");
+            dispatcher = request.getRequestDispatcher("form.jsp");
+            dispatcher.forward(request, response);
+        }else if (userNameFromSession == null || userNameFromSession.equals("")) {
             request.setAttribute("status", "invalidusername");
             dispatcher = request.getRequestDispatcher("form.jsp");
             dispatcher.forward(request, response);
@@ -130,7 +138,7 @@ public class reservationServlet extends HttpServlet {
                 pst.setString(4, vehicle_no);
                 pst.setString(5, mileage);
                 pst.setString(6, message);
-                pst.setString(7, username);
+                pst.setString(7, userNameFromSession);
 
 
                 int rowCount = pst.executeUpdate();

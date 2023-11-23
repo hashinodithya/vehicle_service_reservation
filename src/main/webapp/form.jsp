@@ -113,7 +113,7 @@
 									type="Number" name="mileage" id="name" placeholder="Current Mileage" required="required" 
 									value="<%= StringEscapeUtils.escapeHtml4(request.getParameter("mileage") != null ? request.getParameter("mileage") : "") %>"/>
 							</div>
-							
+							<input type="hidden" name="userName" value="<%= username %>" />
 							<input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
 							
 							<div class="form-group form-button">

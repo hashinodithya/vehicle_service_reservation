@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,9 +28,9 @@ public class reservationDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String username = request.getParameter("username"); 
+		String userNameFromRequest = request.getParameter("userName"); 
 		HttpSession session = request.getSession();
-		String username = (String) session.getAttribute("username");
+		String userNameFromSession = (String) session.getAttribute("username");
 
         
         Connection con = null;
@@ -46,7 +47,15 @@ public class reservationDetailsServlet extends HttpServlet {
         
         System.out.println("CSRF Token from Request: " + csrfTokenFromRequest);
         System.out.println("CSRF Token from Session: " + csrfTokenFromSession);
-
+        //HTTPOnly flag for the csrfToken cookie
+        Cookie csrfTokenCookie = new Cookie("csrfToken", csrfTokenFromSession);
+        csrfTokenCookie.setHttpOnly(true);
+        csrfTokenCookie.setSecure(true);
+        response.addCookie(csrfTokenCookie);
+        
+        System.out.println("username Token from Request: " + userNameFromRequest);
+        System.out.println("username Token from Session: " + userNameFromSession);
+        
 
         if (csrfTokenFromRequest == null || !csrfTokenFromRequest.equals(csrfTokenFromSession)) {
            
@@ -55,6 +64,12 @@ public class reservationDetailsServlet extends HttpServlet {
            dispatcher.forward(request, response);
            return;
         }
+        else if (userNameFromRequest == null || !userNameFromSession.equals(userNameFromRequest)) {
+        	request.setAttribute("status", "userNameError");
+            dispatcher = request.getRequestDispatcher("error.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
@@ -62,7 +77,7 @@ public class reservationDetailsServlet extends HttpServlet {
             
             String sql = "SELECT booking_id, date, time, location, vehicle_no, mileage, message FROM vehicle_service WHERE username=?";
             pst = con.prepareStatement(sql);
-            pst.setString(1, username);
+            pst.setString(1, userNameFromSession);
             
             resultSet = pst.executeQuery();
             

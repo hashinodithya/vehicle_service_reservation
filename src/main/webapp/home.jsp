@@ -69,6 +69,7 @@
   		<form  action="viewReservation" method="post" >
       		<div>
       			<input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
+      			<input type="hidden" name="userName" value="<%= username %>" />
          		<input class="form-submit" type="submit" value="View Reservation" />
       		</div>
       

@@ -13,6 +13,7 @@
 
 <%
    String csrfToken = (String) session.getAttribute("csrfToken");
+   String userName = (String) session.getAttribute("username");
 %>
 
 <!DOCTYPE html>
@@ -86,6 +87,7 @@ if (reservationList != null) {
                 %>
                 <form id="cancel-form-<%= reservation.get("booking_id") %>" action="cancelReservation" method="post">
                     <input type="hidden" name="booking_id" value="<%= reservation.get("booking_id") %>"/>
+                    <input type="hidden" name="userName" value="<%= userName %>" />
                     <input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
                     <Button form="cancel-form-<%= reservation.get("booking_id") %>" type="submit">Cancel</Button>
                 </form>

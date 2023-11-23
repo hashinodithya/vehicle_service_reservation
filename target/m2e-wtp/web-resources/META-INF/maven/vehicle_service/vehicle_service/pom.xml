@@ -18,6 +18,11 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>3.2.3</version>
       </plugin>
+        <plugin>
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <version>7.1.0</version> 
+        </plugin>
     </plugins>
   </build>
       <properties>
