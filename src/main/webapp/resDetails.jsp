@@ -19,8 +19,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1"
-http-equiv="Content-Security-Policy"
-  content="default-src 'self'; img-src https://*; child-src 'none';style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.googleapi.com;" />
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src https://*; child-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;">
 <title>Reservation Details</title>
 <link rel="stylesheet" href="css/resDetails.css">
 </head>

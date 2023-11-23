@@ -16,7 +16,7 @@ public class CSPFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         httpResponse.setHeader("Content-Security-Policy", 
-        		"default-src 'self' ; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.googleapi.com; img-src https://*;");
+        		"default-src 'self' ; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; img-src https://*;");
 
         chain.doFilter(request, response);
     }
