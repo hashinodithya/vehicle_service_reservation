@@ -3,18 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1"
+http-equiv="Content-Security-Policy"
+  content="default-src 'self'; img-src https://*; child-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.googleapi.com;" />
 <title>Home Page</title>
 <link rel="stylesheet" href="css/home.css">
 </head>
-<%@ page import="io.asgardeo.java.saml.sdk.util.SSOAgentConstants" %>
+   <%@ page import="io.asgardeo.java.saml.sdk.util.SSOAgentConstants" %>
    <%@ page import="io.asgardeo.java.saml.sdk.bean.LoggedInSessionBean" %>
    <%@ page import="io.asgardeo.java.saml.sdk.bean.LoggedInSessionBean.SAML2SSO" %>
    <%@ page import="java.util.Map" %>
    <%@ page import="java.security.SecureRandom" %>
    <%@ page import="java.util.Base64" %>
    
-     <%
+   <%
     // Retrieve the session bean.
     LoggedInSessionBean sessionBean = (LoggedInSessionBean) session.getAttribute(SSOAgentConstants.SESSION_BEAN_NAME);
 
@@ -66,7 +68,7 @@
   		<form  action="viewReservation" method="post" >
       		<div>
       			<input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
-         		 <input class="form-submit" type="submit" value="View Reservation" />
+         		<input class="form-submit" type="submit" value="View Reservation" />
       		</div>
       
   		</form>

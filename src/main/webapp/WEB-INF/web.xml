@@ -21,6 +21,15 @@
         <filter-name>SAML2SSOAgentFilter</filter-name>
         <url-pattern>/logout</url-pattern>
     </filter-mapping>
+    <filter>
+    <filter-name>CSPFilter</filter-name>
+    <filter-class>vehicleService.CSPFilter</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>CSPFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
 
     <listener>
         <listener-class>io.asgardeo.tomcat.saml.agent.SSOAgentContextEventListener</listener-class>
