@@ -1,5 +1,17 @@
+<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.Set" %>
+
 <%
    String csrfToken = (String) session.getAttribute("csrfToken");
+
+   // Check if the "navbarCssImported" attribute is not set
+   if (pageContext.getAttribute("navbarCssImported") == null) {
+       // Import the navbar.css stylesheet
+       pageContext.setAttribute("navbarCssImported", true);
+%>
+       <link rel="stylesheet" href="css/navbar.css">
+<%
+   }
 %>
 <nav>
       <div class="navbar">
@@ -17,10 +29,15 @@
 			<li><a href="home.jsp">Home</a></li>
             <li><a href="form.jsp">Book reservation </a></li>
             <li><a href="profile.jsp">Profile</a></li>
-            <li><a href="logout?SAML2.HTTPBinding=HTTP-POST&csrfToken=<%= csrfToken %>">Logout</a></li>
+           
+  		<li>
+    <form action="logoutServlet" method="post" class="logout-form">
+        <input type="hidden" name="csrfToken" value="<%= csrfToken %>">
+        <button class="form-submit" type="submit">Logout</button>
+    </form>
+</li>
+
           </div>
         </div>
       </div>
 </nav>
-<link rel="stylesheet" href="css/navbar.css">
-

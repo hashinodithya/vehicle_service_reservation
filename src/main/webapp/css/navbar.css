@@ -165,3 +165,24 @@ body {
 .nav-container input[type="checkbox"]:checked ~ .logo{
   display: none;
 }
+
+
+.nav-button {
+    display: inline; /* Ensures the form appears inline with other list items */
+    margin: 0; /* Reset margin for the form */
+}
+
+.nav-button {
+    text-decoration: none;
+    color: #0e2431;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.7rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.nav-buttonn:hover {
+    font-weight: bolder;
+}

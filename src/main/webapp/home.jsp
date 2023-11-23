@@ -64,8 +64,11 @@
 	 
   		<button class="button-link"><a href="form.jsp" > Book a car</a></button>
   		<button class="button-link"><a href="profile.jsp" > User Profile</a></button>
-  		<button class="button-link"><a href="logout?SAML2.HTTPBinding=HTTP-POST&csrfToken=<%= csrfToken %>">Logout</a></button>
   		
+  		<form action="logoutServlet" method="post" class="logout-form">
+        <input type="hidden" name="csrfToken" value="<%= csrfToken %>">
+        <button class="form-submit" type="submit">Logout</button>
+        </form>
   		<form  action="viewReservation" method="post" >
       		<div>
       			<input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
