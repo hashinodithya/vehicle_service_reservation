@@ -62,7 +62,7 @@
 	<div>
 		<img class="image" src="https://yi-files.s3.eu-west-1.amazonaws.com/products/788000/788969/1344208-full.jpg">
 	 
-  		<button class="button-link"><a href="form.jsp" > Book a car</a></button>
+  		<button class="button-link"><a href="form.jsp" > Book a reservation</a></button>
   		<button class="button-link"><a href="profile.jsp" > User Profile</a></button>
   		
   		<form action="logoutServlet" method="post" class="logout-form">
